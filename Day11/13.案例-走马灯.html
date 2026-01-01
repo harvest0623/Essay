@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例-走马灯</title>
+    <style>
+        img{
+            display: block;
+            width: 200px;
+        }
+
+        .box{
+            width: 600px;
+            height: 112px;
+            border: 5px solid #000;
+            margin: 100px auto;
+        }
+
+        .box ul{
+            display: flex;
+            animation: move 6s infinite;
+        }
+
+        @keyframes move{
+            0%{
+                transform: translate(0);
+            }
+
+            100%{
+                transform: translate(-1400px);
+            }
+        }
+         
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li><img src="../Day4/cat.jpeg" alt=""></li>
+            <li><img src="../Day2/NBA.jpg" alt=""></li>
+            <li><img src="../Day3/acm.jpeg" alt=""></li>
+        </ul>
+    </div>
+</body>
+</html>

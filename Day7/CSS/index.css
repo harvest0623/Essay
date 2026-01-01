@@ -1,0 +1,69 @@
+/* 首页样式 */
+/* 版心 */
+.wrapper{
+    margin: 0px auto;
+    width: 1200px;
+}
+
+body{
+    background-color: #f3f5f7;
+}
+
+.header{
+    height: 100px;
+    background-color: #fff;
+}
+
+.header .wrapper{
+    display: flex;
+}
+
+.logo a{
+    display: block;
+    width: 256px;
+    height: 80px;
+    background-image: url(../images/logo.png);
+    font-size: 0;
+}
+
+.nav{
+    margin-left: 102px;
+}
+.nav ul{
+    display: flex;
+}
+.nav li{
+    margin-right: 24px;
+}
+.nav a{
+    display: block;
+    padding: 6px 8px;
+    line-height: 50px;
+}
+.nav li .active,
+.nav li a:hover{
+    border-bottom: 2px solid #00a4ff;
+}
+
+.search{
+    margin-left: 64px;
+    padding-left: 19px;
+    padding-right: 12px;
+    line-height: 40px;
+    width: 412px;
+    height: 40px;
+    background-color: #f3f5f7;
+    border-radius: 20px;
+}
+.search input{
+    flex: 1;
+    border: 0;
+    background-color: transparent;
+    outline: none;
+}
+.search a{
+    align-self: center;
+    width: 16px;
+    height: 16px;
+    
+}

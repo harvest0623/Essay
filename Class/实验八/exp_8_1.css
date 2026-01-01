@@ -1,0 +1,40 @@
+ul{
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    width: 643px;
+}
+li{
+    font-size: 32px;
+    width: 190px;
+    display: inline-block;
+}
+.span1{
+    color: blue;
+}
+.span2{
+    color: #AA007F;
+}
+.span3{
+    color: #0000DD;
+}
+.span4{
+    color: #FFAA00;
+}
+.span5{
+    color: #550000;
+}
+.span6{
+    color: #55FF00;
+}
+.hao{
+    color: red;
+    font-size: 46px;
+    font-family: "隶书";
+}
+.container{
+    background-color: #FAFAFA;
+    width: 643px;
+    height: 285px;
+    margin: 0 auto;
+}

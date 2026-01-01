@@ -1,0 +1,646 @@
+/* 基础重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* --- 头部导航 --- */
+.main-header {
+    background: #fff;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo-circle {
+    width: 50px;
+    height: 50px;
+    background: #f1701a;
+    /* 派多格橙 */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #444;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.main-nav li.active a,
+.main-nav a:hover {
+    color: #f1701a;
+}
+
+/* 导航项下方的小红点（参考图1） */
+.main-nav li.active::after {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: #f1701a;
+    border-radius: 50%;
+    margin: 4px auto 0;
+}
+
+.header-contact {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.phone-num {
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+}
+
+.wechat-icon {
+    font-size: 22px;
+    color: #888;
+    cursor: pointer;
+}
+
+/* --- 橙色 Banner --- */
+.hero-banner {
+    background: #f1701a;
+    /* 派多格主橙色 */
+    height: 450px;
+    position: relative;
+    color: white;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.brand-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.main-slogan {
+    font-size: 56px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.sub-slogan {
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.qr-code-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+}
+
+.qr-code-area img {
+    width: 100px;
+    height: 100px;
+    border: 2px solid white;
+    padding: 2px;
+    background: white;
+}
+
+.banner-image img {
+    width: 400px;
+    height: 400px;
+}
+
+/* 左右箭头 */
+.banner-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.1);
+    width: 40px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.arrow-left {
+    left: 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.arrow-right {
+    right: 0;
+    border-radius: 4px 0 0 4px;
+}
+
+
+/* 通用部分标题样式 */
+.section-title {
+    font-size: 18px;
+    color: #999;
+    margin-bottom: 20px;
+    border-left: 4px solid #5e35b1;
+    /* 默认紫色竖线 */
+    padding-left: 10px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.section-title span {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+.section-title.title-orange {
+    border-left-color: #f1701a;
+}
+
+/* 视频与新闻布局 */
+.info-section {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.video-center {
+    flex: 1.8;
+}
+
+.news-center {
+    flex: 1.2;
+}
+
+.video-wrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.video-wrapper img {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.video-dots {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: #ccc;
+    border-radius: 50%;
+}
+
+.dot.active {
+    background: #fff;
+    width: 20px;
+    border-radius: 4px;
+}
+
+/* 新闻列表 */
+/* 新闻资讯外层容器 */
+.news-list-wrapper {
+    height: 337px;
+    overflow: hidden;
+    /* 隐藏超出部分 */
+    position: relative;
+}
+
+/* 内部滚动区域 */
+.news-scroll-container {
+    height: 100%;
+    overflow-y: auto;
+    /* 开启纵向滚动 */
+    padding-right: 10px;
+    /* 为滚动条留出空间 */
+}
+
+/* 自定义滚动条样式 (适配 Chrome/Safari) */
+.news-scroll-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.news-scroll-container::-webkit-scrollbar-thumb {
+    background: #f1701a;
+    /* 滚动条颜色设为品牌橙 */
+    border-radius: 10px;
+}
+
+.news-scroll-container::-webkit-scrollbar-track {
+    background: #eee;
+}
+
+/* 单个新闻项布局 */
+.news-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f5f5f5;
+    align-items: flex-start;
+    /* 顶部对齐 */
+}
+
+/* 核心：图片容器控制 */
+.news-img-box {
+    width: 140px;
+    /* 固定宽度 */
+    height: 90px;
+    /* 固定高度 */
+    flex-shrink: 0;
+    /* 防止被挤压 */
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.news-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 关键：图片自动裁剪填充，不拉伸变形 */
+    transition: transform 0.3s ease;
+}
+
+.news-item:hover img {
+    transform: scale(1.1);
+    /* 悬停微扩效果 */
+}
+
+/* 文字信息微调 */
+.news-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90px;
+    /* 与图片高度保持一致 */
+}
+
+.news-title {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    font-weight: 500;
+    /* 超过两行显示省略号 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-meta {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #999;
+}
+
+
+/* 品牌中心卡片 */
+.brand-section {
+    margin-top: 50px;
+}
+
+.brand-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.brand-card {
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.brand-card:hover {
+    transform: translateY(-5px);
+}
+
+.brand-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.brand-tag {
+    padding: 15px;
+    color: white;
+    text-align: center;
+}
+
+.brand-tag h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.brand-tag p {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+/* 品牌色背景 */
+.orange .brand-tag {
+    background: #f1701a;
+}
+
+.purple .brand-tag {
+    background: #5e35b1;
+}
+
+.yellow .brand-tag {
+    background: #ffb300;
+}
+
+.green .brand-tag {
+    background: #7cb342;
+}
+
+/* 底部资讯三列 */
+.article-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+    padding-bottom: 50px;
+}
+
+.col-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.col-header i {
+    color: #555;
+    font-size: 12px;
+}
+
+.more {
+    font-size: 12px;
+    color: #999;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.article-list {
+    list-style: none;
+}
+
+.article-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 13px;
+    color: #666;
+    border-bottom: 1px dashed #eee;
+    /* 虚线分割 */
+}
+
+.article-list li span:first-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 10px;
+}
+
+.article-list li .date {
+    color: #bbb;
+    flex-shrink: 0;
+}
+
+
+/* --- 底部页脚整体样式 --- */
+.main-footer {
+    background-color: #e0e0e0;
+    /* 浅灰色背景 */
+    padding-top: 40px;
+    color: #666;
+    font-size: 13px;
+    border-top: 1px solid #d0d0d0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1.5fr;
+    gap: 30px;
+    padding-bottom: 30px;
+}
+
+/* 品牌Logo与Slogan */
+.footer-logo {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.footer-brand .slogan {
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+}
+
+/* 联系信息与标题 */
+.main-footer h4 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 15px;
+    border-bottom: 1px solid #ccc;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.footer-contact p {
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.hotline {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.hotline span {
+    color: #333;
+    font-size: 18px;
+}
+
+/* 友情链接布局 */
+.links-group {
+    display: flex;
+    gap: 20px;
+}
+
+.links-group ul {
+    list-style: none;
+}
+
+.links-group a {
+    text-decoration: none;
+    color: #666;
+    line-height: 2;
+}
+
+.links-group a:hover {
+    color: #f1701a;
+}
+
+/* 二维码 */
+/* 页脚微信图标样式 */
+.footer-wechat-area {
+    display: flex;
+    gap: 30px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.wechat-item {
+    text-align: center;
+    color: #666;
+}
+
+.wechat-icon-circle {
+    width: 60px;
+    height: 60px;
+    background-color: #ccc; /* 灰色圆底，参考图片 */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    font-size: 30px;
+    color: #fff;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.wechat-icon-circle:hover {
+    background-color: #07c160; /* 悬停时变为微信绿 */
+}
+
+.wechat-item span {
+    display: block;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+
+/* 最底部版权条 */
+.footer-bottom {
+    background-color: #d6d6d6;
+    /* 稍深一点的灰色 */
+    text-align: center;
+    padding: 15px 0;
+    line-height: 1.8;
+    border-top: 1px solid #ccc;
+}
+
+/* --- 右侧蓝色悬浮窗 --- */
+/* 右侧悬浮咨询窗 - 修正为右下方固定 */
+.side-consult {
+    position: fixed;
+    right: 20px; /* 距离右侧 20px */
+    bottom: 20px; /* 修正：距离底部 20px */
+    width: 100px;
+    background-color: #4c8bf5;
+    color: white;
+    border-radius: 4px; /* 四周圆角更美观 */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.consult-header {
+    background-color: #3b78e7;
+    padding: 12px 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+.consult-list {
+    list-style: none;
+}
+
+.consult-list li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.consult-list a {
+    display: block;
+    padding: 10px 5px;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.consult-list li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}

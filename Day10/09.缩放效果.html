@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>缩放效果</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 210px;
+            margin: 100px auto;
+            background-color: pink;
+        }
+
+        .box img{
+            width: 100%;
+            transition: all 0.5s;
+        }
+
+        .box:hover img{
+            /* width: 500px;
+            height: 400px; */
+            transform: scale(2);
+            transform: scale(0.5);
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="../Day4/cat.jpeg" alt="">
+    </div>
+</body>
+</html>

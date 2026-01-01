@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .father{
+            display: flex;
+            margin: 0 auto;
+            width: 1000px;
+            height: 600px;
+            background-image: url(../Day2/NBA.jpg);
+        }
+
+        .father .left,
+        .father .right{
+            width: 50%;
+            height: 600px;
+            background-image: url(../Day3/acm.jpeg);
+            transition: all 1s;
+        }
+
+        .father .right{
+            background-position: right 0;
+        }
+
+        .father:hover .left{
+            transform: translate(-100%);
+        }
+        .father:hover .right{
+            transform: translateX(100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>

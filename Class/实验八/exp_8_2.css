@@ -1,0 +1,16 @@
+p{
+    font-size: 70px;
+    line-height: 1.5;
+    font-family: "隶书";
+    font-style: italic;
+    margin: 0;
+    background-color: gray;
+}
+.div0{
+    width: 800px;
+    height: 100px;
+    padding: 20px;
+    border: 20px outset #FF0000;
+    margin: 20px auto;
+    text-align: center;
+}

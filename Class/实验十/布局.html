@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>DIV+CSS布局实例</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333; /* 文字颜色便于区分区域 */
+            font-size: 14px;
+        }
+        /* 整体容器 */
+        .container {
+            width: 1006px;
+            margin: 0 auto; /* 页面居中 */
+            border: 1px solid #000; /* 可选：显示容器边框 */
+        }
+        /* 头部区域 (header) */
+        .header {
+            height: 124px;
+            display: flex; /* 横向排列logo和nav */
+        }
+        /* Logo区域 */
+        #Logo {
+            width: 250px;
+            height: 80px;
+            background-color: #55FF55;
+            margin: auto 0; /* 垂直居中 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 导航区域 */
+        #nav {
+            flex: 1; /* 占剩余宽度 */
+            height: 40px;
+            background-color: #56FE45;
+            margin: auto 0 auto 10px; /* 与logo间距 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 内容区域 (content) */
+        .content {
+            display: flex; /* 横向排列left和right */
+            height: 400px;
+            margin: 10px 0; /* 与header、footer间距 */
+        }
+        /* 内容左侧 */
+        #Content-left {
+            width: 250px;
+            height: 400px;
+            background-color: #90FF66;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 内容右侧 */
+        #Content-right {
+            flex: 1;
+            height: 400px;
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column; /* 纵向排列子区域 */
+            justify-content: space-between;
+        }
+        /* 内容右侧子区域1 */
+        #Content-center-left {
+            height: calc(400px / 3 - 7px); /* 均分高度并留间距 */
+            background-color: #99FB99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 内容右侧子区域2 */
+        #Content-center-right {
+            height: calc(400px / 3 - 7px);
+            background-color: #88FFAA;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 内容右侧子区域3 */
+        #Content-right-sub {
+            height: calc(400px / 3 - 7px);
+            background-color: #99FFAE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 底部区域 (footer) */
+        #Footer {
+            height: 40px;
+            background-color: #66FFCC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部区域 -->
+        <div class="header">
+            <div id="Logo">Logo</div>
+            <div id="nav">nav</div>
+        </div>
+        <!-- 内容区域 -->
+        <div class="content">
+            <div id="Content-left">Content-left</div>
+            <div id="Content-right">
+                <div id="Content-center-left">Content-center-left</div>
+                <div id="Content-center-right">Content-center-right</div>
+                <div id="Content-right-sub">Content-right</div>
+            </div>
+        </div>
+        <!-- 底部区域 -->
+        <div id="Footer">Footer</div>
+    </div>
+</body>
+</html>

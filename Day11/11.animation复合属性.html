@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation复合属性</title>
+    <style>
+        div{
+            width: 200px;
+            height: 100px; 
+            background-color: pink;
+            /* linear 匀速 */
+            animation: change 2s linear; 
+            /* step:分步动画 */
+            animation: change 2s steps(3);
+
+            animation: change 1s 2s;
+
+            animation: change 1s 3;
+            animation: change 1s infinite;
+
+            animation: change 1s infinite alternate;
+
+            animation: change 1s forwards;
+            animation: change 1s backwards;
+        }
+
+        @keyframes change {
+            from{
+                width: 200px;
+            }
+
+            to{
+                width: 800px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

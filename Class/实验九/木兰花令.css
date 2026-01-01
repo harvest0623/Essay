@@ -1,0 +1,43 @@
+#wrap{
+    width: 900px;
+    margin: 0 auto;
+    border: 2px solid red;
+    border-top: 5px solid red;
+    text-align: center;
+}
+#pic{
+    width: 420px;
+    height: 300px;
+    background-image: url(https://copyright.bdstatic.com/vcg/creative/d3f8a1b4e1989a0342bd780bad6340ad.jpg@wm_1,k_cGljX2JqaHdhdGVyLmpwZw==);
+    background-repeat: no-repeat;
+    background-position: center;
+    float: left;
+    background-color: #77A;
+}
+#text{
+    background-image: url(https://copyright.bdstatic.com/vcg/creative/d3f8a1b4e1989a0342bd780bad6340ad.jpg@wm_1,k_cGljX2JqaHdhdGVyLmpwZw==);
+    float: right;
+    width: 420px;
+    height: 500px;
+    background-color: #77A;
+    padding: 10px;
+    font-weight: bold;   
+}
+#title{
+    font-family: "华文彩云";
+    font-size: 32px;
+}
+#author{
+    font-size: 12px;
+    font-family: "黑体";
+    text-align: right;
+    margin-bottom: 24px;
+}
+p{
+    font-family: "隶书";
+    font-size: 24px;
+    border: 2px solid;
+    letter-spacing: 0.5em;
+    line-height: 1.5em;
+    text-align: center;
+}

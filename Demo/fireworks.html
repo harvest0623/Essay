@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>2026 赛博跨年 - 数字化烟花盛典</title>
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff00ff;
+            --glitch-color: #76ff03;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            overflow: hidden;
+            color: #fff;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        #container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        canvas {
+            display: block;
+            filter: contrast(1.2) brightness(1.1);
+        }
+
+        /* 扫描线科幻特效 */
+        #container::after {
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .ui-panel {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            width: 100%;
+        }
+
+        #timer {
+            font-size: clamp(3rem, 15vw, 10rem);
+            font-weight: 900;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -2px;
+            background: linear-gradient(to bottom, #fff 40%, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.5));
+            margin: 0;
+        }
+
+        .new-year-banner {
+            display: none;
+            font-size: clamp(2rem, 8vw, 6rem);
+            padding: 20px 60px;
+            border: 4px double var(--neon-blue);
+            box-shadow: 0 0 30px var(--neon-blue), inset 0 0 20px var(--neon-pink);
+            text-transform: uppercase;
+            animation: neonPulse 2s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            from {
+                opacity: 0.8;
+                transform: scale(0.98);
+                filter: hue-rotate(0deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1.02);
+                filter: hue-rotate(45deg);
+            }
+        }
+
+        #music-tip {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: var(--neon-blue);
+            font-size: 0.8rem;
+            border: 1px solid var(--neon-blue);
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body onclick="startAudio()">
+
+    <div id="container">
+        <canvas id="canvas"></canvas>
+
+        <div class="ui-panel">
+            <p id="sub-header" style="letter-spacing: 5px; color: var(--neon-pink);">SYSTEM.STARTING_2026</p>
+            <h1 id="timer">00:00:00</h1>
+            <div id="newYearText" class="new-year-banner">HAPPY NEW YEAR 2026</div>
+        </div>
+    </div>
+
+    <div id="music-tip">点击页面开启音乐与全屏</div>
+
+    <audio id="bgm" loop>
+        <source src="https://actions.google.com/sounds/v1/ambient/future_ambient.ogg" type="audio/ogg">
+    </audio>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const timerEl = document.getElementById('timer');
+        const newYearText = document.getElementById('newYearText');
+        const bgm = document.getElementById('bgm');
+
+        let width, height;
+        let particles = [];
+        let rockets = [];
+
+        // 目标时间：2026年1月1日 00:00:00 (本地时间)
+        const targetDate = new Date('2026-01-01T00:00:00').getTime();
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function startAudio() {
+            bgm.play();
+            document.getElementById('music-tip').style.opacity = '0';
+        }
+
+        class Particle {
+            constructor(x, y, color, velocity) {
+                this.x = x; this.y = y; this.color = color;
+                this.velocity = velocity;
+                this.alpha = 1;
+                this.friction = 0.96;
+                this.gravity = 0.12;
+                this.size = Math.random() * 2 + 1;
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+            update() {
+                this.velocity.x *= this.friction;
+                this.velocity.y *= this.friction;
+                this.velocity.y += this.gravity;
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.alpha -= 0.01;
+            }
+        }
+
+        class Rocket {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = height;
+                this.targetY = Math.random() * (height * 0.4) + 100;
+                this.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                this.velocity = { x: (Math.random() - 0.5) * 3, y: -15 };
+                this.alive = true;
+            }
+            update() {
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                if (this.y <= this.targetY) {
+                    this.explode();
+                    this.alive = false;
+                }
+            }
+            explode() {
+                const shapeType = Math.floor(Math.random() * 4); // 随机爆炸形态
+                const particleCount = 120;
+
+                for (let i = 0; i < particleCount; i++) {
+                    let vx, vy;
+                    const angle = (Math.PI * 2 / particleCount) * i;
+                    const speed = Math.random() * 8 + 4;
+
+                    if (shapeType === 0) { // 圆形
+                        vx = Math.cos(angle) * speed;
+                        vy = Math.sin(angle) * speed;
+                    } else if (shapeType === 1) { // 心形
+                        const t = angle;
+                        vx = 16 * Math.pow(Math.sin(t), 3) * (speed / 10);
+                        vy = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * (speed / 10);
+                    } else if (shapeType === 2) { // 放射星形
+                        const mod = i % 5 === 0 ? 2 : 1;
+                        vx = Math.cos(angle) * speed * mod;
+                        vy = Math.sin(angle) * speed * mod;
+                    } else { // 环形双层
+                        const r = i % 2 === 0 ? 1 : 0.5;
+                        vx = Math.cos(angle) * speed * r;
+                        vy = Math.sin(angle) * speed * r;
+                    }
+                    particles.push(new Particle(this.x, this.y, this.color, { x: vx, y: vy }));
+                }
+            }
+            draw() {
+                ctx.fillStyle = "#fff";
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                timerEl.style.display = 'none';
+                document.getElementById('sub-header').style.display = 'none';
+                newYearText.style.display = 'inline-block';
+                if (Math.random() < 0.2) rockets.push(new Rocket());
+                return;
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / 1000 / 60) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+
+            timerEl.innerText = `${d > 0 ? d + 'D ' : ''}${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            if (Math.random() < 0.05) rockets.push(new Rocket());
+        }
+
+        function loop() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.2)'; // 调深背景，突出科幻感
+            ctx.fillRect(0, 0, width, height);
+
+            updateCountdown();
+
+            rockets.forEach((r, i) => {
+                r.update();
+                r.draw();
+                if (!r.alive) rockets.splice(i, 1);
+            });
+
+            particles.forEach((p, i) => {
+                p.update();
+                p.draw();
+                if (p.alpha <= 0) particles.splice(i, 1);
+            });
+
+            requestAnimationFrame(loop);
+        }
+
+        loop();
+    </script>
+</body>
+</html>

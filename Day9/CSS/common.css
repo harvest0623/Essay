@@ -1,0 +1,30 @@
+.wrapper{
+    margin: 0 auto;
+    width: 1240px;
+}
+
+.shortcut{
+    height: 52px;
+    background-color: #333;
+}
+
+.shortcut .wrapper{
+    display: flex;
+    justify-content: flex-end;
+    height: 52px;
+    background-color: pink;
+}
+
+.shortcut ul{
+    display: flex;
+    line-height: 52px;
+}
+
+.shortcut li a{
+    padding: 0 15px;
+    border-right: 1px solid #999;
+}
+
+.shortcut li:last-child a{
+    border-right: 0;
+}

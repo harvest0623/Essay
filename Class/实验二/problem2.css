@@ -1,0 +1,21 @@
+body{
+    text-align: center;
+    background-color: #FFFFEE;
+}
+hr{
+    height: 1px;
+    background-color: red;
+}
+h2{
+    text-align: center;
+}
+img{
+    width: 512px;
+    margin: 0 auto;
+    display: block;
+}
+p{
+    font-size: 24px;
+    text-indent: 2em;
+    text-align: left;
+}

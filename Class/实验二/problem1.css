@@ -1,0 +1,18 @@
+h3{
+    text-align: center;
+}
+hr{
+    height: 1px;
+    background-color: #FF3333;
+    border: none;
+}
+.content-img{
+    width: 350px;
+    display: block;
+    margin: 0 auto;
+}
+.content-text{
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+}

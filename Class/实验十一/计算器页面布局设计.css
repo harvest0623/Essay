@@ -1,0 +1,32 @@
+.calculator-box {
+        background-color: #FAFBFC;
+        width: 410px;
+        height: 450px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #000;
+    }
+
+    /* 计算器表格样式 */
+    .calculator {
+        width: 100%;
+        height: 100%;
+        border-spacing: 30px; /* 单元格间距30px */
+    }
+
+    /* 单元格样式 */
+    .calculator td {
+        border: 1px solid #000;
+        width: 60px;
+        height: 40px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* 显示区域单元格 */
+    .display {
+        vertical-align: top;
+        padding-top: 10px;
+        font-size: 20px;
+    }
