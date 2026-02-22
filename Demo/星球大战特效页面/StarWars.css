@@ -1,0 +1,143 @@
+/* Eric Meyer's Reset CSS v2.0 - http://meyerweb.com/eric/tools/css/reset/ */
+/* 扩展版本 */
+/* css reset */
+/* 初始化页面，所有浏览器上体验一致 */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* 设置 html 和 body 高度为视窗高度的100%，确保页面占据整个浏览器窗口 */
+html, body {
+    height: 100vh;
+}
+  
+/* 给 body 添加背景色和背景图，并设置背景图不重复 */
+body {
+    background: #000 url('./bg.jpg');
+}
+
+/* 创建一个具有3D透视效果的容器，用于“Star Wars”滚动文本动画 */
+.starwars {
+    perspective:800px; /* 设置3D透视效果的距离 */
+    transform-style:preserve-3d; /* 保留子元素的3D转换 */
+    height: 17em; /* 设置容器的高度 */
+    width: 34em; /* 设置容器的宽度 */
+    position: absolute; /* 使用绝对定位来放置容器 */
+    top: 50%; /* 垂直居中定位 */
+    left: 50%; /* 水平定位居中 */
+    transform: translate(-50%, -50%); /* 调整自身位置以实现精确居中 */
+}
+
+/* 设置图片的宽度为100%，使其适应其父元素的宽度 */
+img {
+    width: 100%;
+}
+
+/* 为 'star', 'wars' 和 'byline' 元素设置绝对定位，以便在 '.starwars' 容器内自由移动 */
+.star, .wars, .byline {
+    position: absolute;
+}
+
+/* 设置 'star' 元素的位置 */
+.star {
+    top: -0.75em; /* 向上偏移 */
+}
+
+/* 设置 'wars' 元素的位置 */
+.wars {
+    bottom: -0.5em; /* 向下偏移 */
+}
+
+/* 设置 'byline' 元素的样式，包括颜色、字体大小、水平对齐方式等 */
+.byline {
+    color: #fff; /* 文字颜色为白色 */
+    font-size: 2.25em; /* 设置字体大小 */
+    left: -2em; /* 左边向内缩进 */
+    right: -2em; /* 右边向内缩进 */
+    text-align: center; /* 文本居中对齐 */
+    text-transform: uppercase; /* 将文本转换为大写 */
+    top: 42%; /* 设置垂直位置 */
+}
+
+/* 为 'star' 元素添加动画效果，包括动画名称、持续时间、缓动函数和播放次数 */
+.star {
+    animation: star 10s ease-out infinite;  /*由快到慢*/
+}
+.wars {
+    animation: wars 10s ease-out infinite; 
+}
+
+/* 定义 'star' 动画的关键帧，控制 'star' 元素从透明到显示再到消失的过程 */
+@keyframes star {
+    0%{
+        opacity: 0; /* 开始时完全透明 */
+        transform:scale(1.5) translate(-0.75em); /* 放大并定位 */
+    }
+    20%{
+        opacity:1; /* 在20%的时间点变得完全不透明 */
+    }
+    89%{
+        opacity:1; /* 在89%的时间点保持不透明 */
+        transform: scale(1); /* 回到原始大小 */
+    }
+    100%{
+        opacity:0; /* 结束时完全透明 */
+        transform: translateZ(-1000em); /* 向后移动很远的距离，看起来像是消失了 */
+    }
+}
+
+/* 为 'byline' 元素添加动画效果 */
+.byline {
+    animation: movie-byline 10s linear infinite;
+}
+
+/* 为 'byline' 下的 span 元素添加旋转动画效果 */
+.byline span {
+    animation: spin-letters 10s linear infinite;
+    display: inline-block; /* 让 span 元素像块级元素一样显示，以便应用旋转动画 */
+}
+
+/* 定义 'movie-byline' 动画的关键帧，使 'byline' 元素产生深度变化的效果 */
+@keyframes movie-byline {
+    0%{
+        transform: translateZ(5em); /* 开始时向用户方向移动 */
+    }
+    100%{
+        transform: translateZ(0em); /* 结束时回到原位 */
+    }
+}
+
+/* 定义 'spin-letters' 动画的关键帧，让 'byline' 中的文字产生旋转效果 */
+@keyframes spin-letters {
+    0%,10%{
+        opacity: 0; /* 开始时文字完全不可见 */
+        transform:rotateY(90deg); /* 初始旋转角度为90度，文字面向侧面 */
+    }
+    30%{
+        opacity: 1; /* 在30%的时间点文字完全可见 */
+    }
+    70%,86%{
+        transform:rotateY(0); /* 在70%-86%的时间段内文字面向用户 */
+        opacity: 1; /* 文字保持完全可见 */
+    }
+    95%,100%{
+        opacity: 0; /* 接近结束时文字再次变得不可见 */
+    }
+}
