@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakura Login | 樱花守护</title>
+    <!-- 引入可爱字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* 提取自您提供的 CSS */
+            --bg-start: #ffd1dc;
+            --bg-mid: #e0bbe4;
+            --bg-end: #d291bc;
+            --text-main: #5a3d5c;
+            --text-dim: #8a6d8b;
+            --accent-pink: #ff69b4;
+            --accent-light: #ffb6c1;
+            --white-glass: rgba(255, 255, 255, 0.85);
+
+            /* 保镖专属柔和色系 */
+            --guard-1: #ffcce0;
+            /* 浅粉 */
+            --guard-2: #e6c2ff;
+            /* 浅紫 */
+            --guard-3: #ff99ac;
+            /* 玫瑰粉 */
+            --guard-4: #fff0f5;
+            /* 薰衣草白 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* 核心背景：樱花渐变 */
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-mid), var(--bg-end));
+            background-size: 200% 200%;
+            animation: gradientFlow 15s ease infinite;
+
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* --- 背景装饰 (提取自您的代码) --- */
+        .decoration-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart,
+        .flower,
+        .cloud {
+            position: absolute;
+            opacity: 0.6;
+        }
+
+        .heart {
+            color: rgba(255, 105, 180, 0.4);
+            font-size: 24px;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .flower {
+            color: rgba(255, 215, 0, 0.4);
+            font-size: 28px;
+            animation: rotate 20s infinite linear;
+        }
+
+        .cloud {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 50px;
+            animation: drift 30s infinite linear;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translateX(-100px);
+            }
+
+            100% {
+                transform: translateX(calc(100vw + 100px));
+            }
+        }
+
+        /* --- 主体容器 --- */
+        .container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            width: 900px;
+            max-width: 95%;
+            background: var(--white-glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(90, 61, 92, 0.15);
+            overflow: hidden;
+        }
+
+        /* 左侧保镖区域 */
+        .guards-panel {
+            flex: 1.2;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            padding: 30px;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-right: 1px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+        }
+
+        .guard {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .guard-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: #fff;
+            border: 3px solid #fff;
+            box-shadow: 0 8px 20px rgba(90, 61, 92, 0.1);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+            will-change: transform;
+        }
+
+        /* 保镖配色 */
+        .guard-1 .guard-avatar {
+            background: var(--guard-1);
+            box-shadow: 0 8px 20px rgba(255, 204, 224, 0.6);
+        }
+
+        .guard-2 .guard-avatar {
+            background: var(--guard-2);
+            box-shadow: 0 8px 20px rgba(230, 194, 255, 0.6);
+        }
+
+        .guard-3 .guard-avatar {
+            background: var(--guard-3);
+            box-shadow: 0 8px 20px rgba(255, 153, 172, 0.6);
+        }
+
+        .guard-4 .guard-avatar {
+            background: var(--guard-4);
+            box-shadow: 0 8px 20px rgba(255, 240, 245, 0.6);
+        }
+
+        .guard:hover .guard-avatar {
+            transform: scale(1.15) !important;
+            z-index: 20;
+            box-shadow: 0 12px 30px rgba(255, 105, 180, 0.3);
+        }
+
+        /* 机械眼结构 (适配可爱风) */
+        .visor {
+            width: 65%;
+            height: 22%;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 4px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: inset 0 2px 4px rgba(90, 61, 92, 0.05);
+        }
+
+        .eye {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--text-main);
+            /* 深紫色眼珠 */
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+
+        /* 眼神高光 */
+        .eye::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #fff;
+            top: 20%;
+            left: 20%;
+            opacity: 0.9;
+        }
+
+        /* 腮红/状态灯 */
+        .blush {
+            position: absolute;
+            bottom: 18px;
+            width: 8px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 105, 180, 0.4);
+            filter: blur(1px);
+            animation: blinkBlush 3s infinite;
+        }
+
+        @keyframes blinkBlush {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* 右侧表单区域 */
+        .login-panel {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h2 {
+            font-family: 'Pacifico', cursive;
+            font-size: 38px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--bg-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
+        }
+
+        .login-header p {
+            font-size: 15px;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-main);
+            font-size: 13px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-left: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 2px solid #ffd1dc;
+            border-radius: 15px;
+            color: var(--text-main);
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .form-group input:focus {
+            background: #fff;
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .form-group input::placeholder {
+            color: #c49bb8;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 13px;
+            color: var(--text-dim);
+            padding: 0 5px;
+        }
+
+        .actions label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text-dim);
+        }
+
+        .actions input[type="checkbox"] {
+            margin-right: 6px;
+            accent-color: var(--accent-pink);
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+
+        .actions a {
+            color: var(--accent-pink);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .actions a:hover {
+            color: var(--bg-end);
+            text-decoration: underline;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--bg-end));
+            color: white;
+            border: none;
+            border-radius: 18px;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+            letter-spacing: 1px;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 105, 180, 0.5);
+            filter: brightness(1.05);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        button:hover::after {
+            left: 100%;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                width: 90%;
+            }
+
+            .guards-panel {
+                grid-template-columns: repeat(4, 1fr);
+                padding: 20px;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            }
+
+            .guard-avatar {
+                width: 60px;
+                height: 60px;
+            }
+
+            .visor {
+                width: 60%;
+                height: 20%;
+            }
+
+            .eye {
+                width: 8px;
+                height: 8px;
+            }
+
+            .login-panel {
+                padding: 30px;
+            }
+
+            .login-header h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 背景装饰 -->
+    <div class="decoration-container">
+        <!-- 动态生成一些装饰物 -->
+        <div class="heart" style="top: 10%; left: 10%;">❤</div>
+        <div class="heart" style="top: 20%; right: 15%; animation-delay: -2s;">❤</div>
+        <div class="flower" style="top: 60%; left: 5%; animation-delay: -5s;">✿</div>
+        <div class="flower" style="bottom: 15%; right: 10%;">✿</div>
+        <div class="cloud" style="top: 5%; left: -10%;">☁</div>
+        <div class="cloud" style="top: 40%; right: -5%; animation-delay: -15s;">☁</div>
+    </div>
+
+    <div class="container">
+        <!-- 左侧：四个樱花守护精灵 -->
+        <div class="guards-panel">
+            <div class="guard guard-1" id="g1">
+                <div class="guard-avatar">
+                    <div class="visor">
+                        <div class="eye" id="e1-1"></div>
+                        <div class="eye" id="e1-2"></div>
+                    </div>
+                    <div class="blush"></div>
+                </div>
+            </div>
+            <div class="guard guard-2" id="g2">
+                <div class="guard-avatar">
+                    <div class="visor">
+                        <div class="eye" id="e2-1"></div>
+                        <div class="eye" id="e2-2"></div>
+                    </div>
+                    <div class="blush"></div>
+                </div>
+            </div>
+            <div class="guard guard-3" id="g3">
+                <div class="guard-avatar">
+                    <div class="visor">
+                        <div class="eye" id="e3-1"></div>
+                        <div class="eye" id="e3-2"></div>
+                    </div>
+                    <div class="blush"></div>
+                </div>
+            </div>
+            <div class="guard guard-4" id="g4">
+                <div class="guard-avatar">
+                    <div class="visor">
+                        <div class="eye" id="e4-1"></div>
+                        <div class="eye" id="e4-2"></div>
+                    </div>
+                    <div class="blush"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧：登录表单 -->
+        <div class="login-panel">
+            <div class="login-header">
+                <h2>Welcome Love</h2>
+                <p>请输入您的信息，开启梦幻之旅</p>
+            </div>
+
+            <form onsubmit="event.preventDefault();">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" placeholder="Your Name" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" placeholder="••••••••" autocomplete="off">
+                </div>
+
+                <div class="actions">
+                    <label>
+                        <input type="checkbox"> 记住我
+                    </label>
+                    <a href="#">忘记密码？</a>
+                </div>
+
+                <button type="submit">立即登录</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const guards = document.querySelectorAll('.guard');
+        const allEyes = document.querySelectorAll('.eye');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+
+        // --- 增强的视线追踪逻辑 ---
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            const xPercent = (mouseX / windowWidth) - 0.5;
+            const yPercent = (mouseY / windowHeight) - 0.5;
+
+            guards.forEach((guard, index) => {
+                const avatar = guard.querySelector('.guard-avatar');
+
+                // 头部转动保持不变 (柔和)
+                const rotateY = xPercent * 10 * (index % 2 === 0 ? 1 : -1);
+                const rotateX = -yPercent * 8;
+
+                avatar.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+            });
+
+            // 【修改点】眼球移动幅度大幅增加：从 4px 改为 12px
+            // 现在左右移动非常明显，能一眼看出眼神在跟随
+            allEyes.forEach(eye => {
+                const moveX = xPercent * 12;  // 之前是 4，现在是 12
+                const moveY = yPercent * 6;   // 上下也稍微增加一点，保持自然比例
+                eye.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        });
+
+        // 输入框焦点交互 (Q弹可爱效果)
+        usernameInput.addEventListener('focus', () => {
+            const g1 = document.getElementById('g1').querySelector('.guard-avatar');
+            const g2 = document.getElementById('g2').querySelector('.guard-avatar');
+            g1.style.transform = 'scale(1.15) rotateY(12deg)';
+            g2.style.transform = 'scale(1.15) rotateY(-12deg)';
+        });
+
+        usernameInput.addEventListener('blur', () => {
+            document.getElementById('g1').querySelector('.guard-avatar').style.transform = '';
+            document.getElementById('g2').querySelector('.guard-avatar').style.transform = '';
+        });
+
+        passwordInput.addEventListener('focus', () => {
+            const g3 = document.getElementById('g3').querySelector('.guard-avatar');
+            const g4 = document.getElementById('g4').querySelector('.guard-avatar');
+            g3.style.transform = 'scale(1.15) rotateY(12deg)';
+            g4.style.transform = 'scale(1.15) rotateY(-12deg)';
+        });
+
+        passwordInput.addEventListener('blur', () => {
+            document.getElementById('g3').querySelector('.guard-avatar').style.transform = '';
+            document.getElementById('g4').querySelector('.guard-avatar').style.transform = '';
+        });
+    </script>
+</body>
+</html>
