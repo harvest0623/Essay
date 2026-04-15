@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global AI Agent Platform Demo</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">AI Agent 出海业务 Demo</p>
+        <h1>从社交流量接入到付费闭环的全链路产品演示</h1>
+        <p class="hero__summary">
+          这个 demo 将图片里的四块能力整合为一个可讲述、可交互、可验证逻辑闭环的产品原型：
+          用统一身份、Agent 核心、支付会员和数据合规，支撑 WhatsApp / Telegram / Web 三端增长。
+        </p>
+        <div class="hero__actions">
+          <button class="primary-btn" data-scroll-target="flow">查看业务链路</button>
+          <button class="ghost-btn" data-scroll-target="architecture">查看架构设计</button>
+        </div>
+      </div>
+      <div class="hero__panel glass-card">
+        <div class="hero__stats">
+          <div>
+            <span>接入渠道</span>
+            <strong>3</strong>
+          </div>
+          <div>
+            <span>核心服务</span>
+            <strong>8</strong>
+          </div>
+          <div>
+            <span>核心闭环</span>
+            <strong>登录 → 对话 → 记忆 → 付费</strong>
+          </div>
+        </div>
+        <div class="signal-grid">
+          <span>OAuth2 / JWT</span>
+          <span>API Gateway</span>
+          <span>Rule Engine</span>
+          <span>LLM Orchestration</span>
+          <span>Milvus Memory</span>
+          <span>Stripe Billing</span>
+          <span>GDPR Toolkit</span>
+          <span>React + TS</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section" id="architecture">
+        <div class="section-heading">
+          <p class="eyebrow">Architecture</p>
+          <h2>一张图看清项目的技术逻辑</h2>
+          <p>
+            图片里的内容不是分散的技能点，而是一条完整的系统链路：渠道入口负责拉新，统一身份负责打通用户，
+            Agent 负责核心体验，支付和合规负责商业化与全球运营。
+          </p>
+        </div>
+
+        <div class="architecture-board">
+          <div class="arch-layer">
+            <div class="arch-layer__label">用户入口层</div>
+            <div class="arch-cards">
+              <article class="arch-card">
+                <h3>WhatsApp</h3>
+                <p>Bot API 消息接入、媒体解析、会话同步</p>
+              </article>
+              <article class="arch-card">
+                <h3>Telegram</h3>
+                <p>消息中转、语音转写、用户触达增长</p>
+              </article>
+              <article class="arch-card">
+                <h3>Web App</h3>
+                <p>React + TS 统一体验、会员转化、后台管理</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="arch-layer">
+            <div class="arch-layer__label">平台接入层</div>
+            <div class="arch-cards">
+              <article class="arch-card accent">
+                <h3>OAuth2 / JWT 身份中心</h3>
+                <p>三端账号统一登录，跨平台用户数据同步</p>
+              </article>
+              <article class="arch-card accent">
+                <h3>API Gateway</h3>
+                <p>统一路由、鉴权、限流、标准化接口协议</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="arch-layer">
+            <div class="arch-layer__label">Agent 核心层</div>
+            <div class="arch-cards">
+              <article class="arch-card">
+                <h3>规则引擎 + 大模型调用</h3>
+                <p>意图识别、多轮对话管理、情感理解</p>
+              </article>
+              <article class="arch-card">
+                <h3>Milvus 记忆中心</h3>
+                <p>长期记忆、人格画像、语义检索、用户状态</p>
+              </article>
+              <article class="arch-card">
+                <h3>风险识别模块</h3>
+                <p>PUA 检测、关系状态判断、内容安全治理</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="arch-layer">
+            <div class="arch-layer__label">业务支撑层</div>
+            <div class="arch-cards">
+              <article class="arch-card">
+                <h3>Stripe 订阅与会员</h3>
+                <p>免费额度、支付回调、订阅升级、商业转化</p>
+              </article>
+              <article class="arch-card">
+                <h3>合规服务</h3>
+                <p>数据脱敏、区域策略、导出删除、GDPR 支撑</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="arch-layer">
+            <div class="arch-layer__label">基础设施层</div>
+            <div class="arch-cards">
+              <article class="arch-card">
+                <h3>SpringBoot / SpringCloud</h3>
+                <p>微服务拆分，高并发请求调度与稳定运行</p>
+              </article>
+              <article class="arch-card">
+                <h3>MySQL / Redis</h3>
+                <p>数据持久化、缓存优化、低延迟高可用支撑</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="flow">
+        <div class="section-heading">
+          <p class="eyebrow">Business Flow</p>
+          <h2>核心业务闭环</h2>
+          <p>
+            这里把图片里的技术点收束为一个用户旅程：从社交渠道进入，完成身份绑定，触发 Agent 服务，
+            命中记忆与风险控制，再进入免费额度和付费订阅逻辑，最终沉淀为可合规运营的全球化业务。
+          </p>
+        </div>
+
+        <div class="flow-layout">
+          <aside class="flow-steps glass-card" id="stepList"></aside>
+          <article class="flow-detail glass-card">
+            <div class="flow-detail__top">
+              <p class="detail-kicker" id="detailTag">Step 01</p>
+              <h3 id="detailTitle"></h3>
+              <p id="detailDescription"></p>
+            </div>
+            <div class="detail-grid">
+              <div>
+                <span class="detail-label">输入</span>
+                <p id="detailInput"></p>
+              </div>
+              <div>
+                <span class="detail-label">系统动作</span>
+                <p id="detailAction"></p>
+              </div>
+              <div>
+                <span class="detail-label">关键服务</span>
+                <p id="detailServices"></p>
+              </div>
+              <div>
+                <span class="detail-label">输出结果</span>
+                <p id="detailOutput"></p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Scenario Simulator</p>
+          <h2>Agent 交互场景模拟</h2>
+          <p>
+            用三个真实业务模式，快速演示这个系统为什么要同时具备身份、记忆、风控、支付和合规能力。
+          </p>
+        </div>
+
+        <div class="scenario-shell">
+          <div class="scenario-tabs" id="scenarioTabs"></div>
+          <div class="scenario-view glass-card">
+            <div class="chat-window">
+              <div class="chat-window__header">
+                <span id="scenarioChannel"></span>
+                <span id="scenarioStatus"></span>
+              </div>
+              <div class="chat-messages" id="scenarioMessages"></div>
+            </div>
+            <div class="scenario-side">
+              <div class="scenario-metric">
+                <span>记忆命中</span>
+                <strong id="scenarioMemory"></strong>
+              </div>
+              <div class="scenario-metric">
+                <span>风险评级</span>
+                <strong id="scenarioRisk"></strong>
+              </div>
+              <div class="scenario-metric">
+                <span>转化动作</span>
+                <strong id="scenarioConversion"></strong>
+              </div>
+              <div class="scenario-note" id="scenarioNote"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Capability Map</p>
+          <h2>图片内容的逻辑关系拆解</h2>
+        </div>
+        <div class="capability-grid">
+          <article class="glass-card capability-card">
+            <span>01</span>
+            <h3>全栈架构是底座</h3>
+            <p>
+              微服务、缓存、数据库、认证和网关先保证系统跑得稳，才能支撑海外 C 端高并发和多入口接入。
+            </p>
+          </article>
+          <article class="glass-card capability-card">
+            <span>02</span>
+            <h3>Agent 是核心产品价值</h3>
+            <p>
+              规则引擎与大模型决定“会不会聊”，Milvus 记忆与风险判断决定“能不能持续聊、放心聊”。
+            </p>
+          </article>
+          <article class="glass-card capability-card">
+            <span>03</span>
+            <h3>支付与会员是商业变现</h3>
+            <p>
+              免费对话额度负责拉新试用，Stripe 订阅负责将高频用户转为会员收入，形成 Web 支付闭环。
+            </p>
+          </article>
+          <article class="glass-card capability-card">
+            <span>04</span>
+            <h3>合规是全球运营前提</h3>
+            <p>
+              数据脱敏、删除导出和地区策略不是附加功能，而是出海产品在 GDPR 和北美隐私法下的准入门槛。
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>

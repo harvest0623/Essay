@@ -1,0 +1,488 @@
+:root {
+  --bg: #f4efe6;
+  --bg-strong: #eadfcf;
+  --surface: rgba(255, 250, 242, 0.76);
+  --surface-strong: rgba(255, 248, 237, 0.96);
+  --text: #201713;
+  --muted: #675b55;
+  --line: rgba(53, 37, 29, 0.14);
+  --accent: #d66b2d;
+  --accent-deep: #a9481c;
+  --teal: #0f766e;
+  --shadow: 0 20px 50px rgba(92, 61, 42, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(214, 107, 45, 0.22), transparent 26%),
+    radial-gradient(circle at 90% 10%, rgba(15, 118, 110, 0.2), transparent 24%),
+    linear-gradient(180deg, #f8f1e7 0%, #f4efe6 56%, #efe7da 100%);
+  font-family: "Microsoft YaHei UI", "PingFang SC", "Segoe UI", sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(32, 23, 19, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32, 23, 19, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.25), transparent 80%);
+}
+
+.page-shell {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 28px 0 80px;
+}
+
+.hero,
+.flow-layout,
+.scenario-view {
+  display: grid;
+  gap: 24px;
+}
+
+.hero {
+  grid-template-columns: 1.4fr 1fr;
+  align-items: stretch;
+  padding: 28px 0 44px;
+}
+
+.hero__content h1,
+.section-heading h2,
+.flow-detail h3,
+.arch-card h3,
+.capability-card h3 {
+  font-family: Bahnschrift, "Arial Narrow", "Microsoft YaHei UI", sans-serif;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--accent-deep);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.hero__content h1 {
+  margin: 0;
+  max-width: 780px;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+}
+
+.hero__summary,
+.section-heading p,
+.arch-card p,
+.flow-detail p,
+.capability-card p,
+.scenario-note {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.hero__summary {
+  max-width: 720px;
+  margin: 18px 0 0;
+  font-size: 17px;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.primary-btn,
+.ghost-btn,
+.flow-step {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.primary-btn,
+.ghost-btn {
+  padding: 14px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.primary-btn {
+  background: var(--text);
+  color: #fff7ed;
+  box-shadow: var(--shadow);
+}
+
+.ghost-btn {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+
+.primary-btn:hover,
+.ghost-btn:hover,
+.flow-step:hover {
+  transform: translateY(-2px);
+}
+
+.glass-card {
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.hero__panel {
+  border-radius: 28px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__panel::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -35% 30%;
+  height: 280px;
+  background: radial-gradient(circle, rgba(214, 107, 45, 0.26), transparent 70%);
+}
+
+.hero__stats {
+  display: grid;
+  gap: 16px;
+}
+
+.hero__stats div {
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: var(--surface-strong);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.hero__stats span,
+.detail-label,
+.scenario-metric span,
+.chat-window__header span,
+.arch-layer__label {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hero__stats strong,
+.scenario-metric strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.signal-grid span {
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(32, 23, 19, 0.06);
+  font-size: 14px;
+}
+
+.section {
+  margin-top: 50px;
+}
+
+.section-heading {
+  max-width: 760px;
+  margin-bottom: 22px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.architecture-board {
+  display: grid;
+  gap: 18px;
+}
+
+.arch-layer {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.arch-layer__label {
+  padding-top: 20px;
+  font-weight: 700;
+}
+
+.arch-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.arch-card {
+  min-height: 148px;
+  padding: 20px;
+  border-radius: 24px;
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: var(--shadow);
+}
+
+.arch-card.accent {
+  background: linear-gradient(135deg, rgba(214, 107, 45, 0.16), rgba(255, 248, 237, 0.96));
+}
+
+.arch-card h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+}
+
+.flow-layout {
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: start;
+}
+
+.flow-steps,
+.flow-detail,
+.scenario-view,
+.capability-card {
+  border-radius: 28px;
+  padding: 18px;
+}
+
+.flow-steps {
+  display: grid;
+  gap: 10px;
+}
+
+.flow-step {
+  text-align: left;
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(255, 252, 247, 0.6);
+  border: 1px solid transparent;
+}
+
+.flow-step strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.flow-step span {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.flow-step.is-active {
+  background: linear-gradient(135deg, rgba(214, 107, 45, 0.18), rgba(255, 252, 247, 0.96));
+  border-color: rgba(214, 107, 45, 0.32);
+}
+
+.flow-detail {
+  min-height: 420px;
+}
+
+.detail-kicker {
+  margin: 0 0 10px;
+  color: var(--accent-deep);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.flow-detail h3 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.detail-grid div,
+.scenario-metric,
+.scenario-note {
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(255, 252, 247, 0.7);
+}
+
+.scenario-shell {
+  display: grid;
+  gap: 16px;
+}
+
+.scenario-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.scenario-tab {
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 252, 247, 0.58);
+}
+
+.scenario-tab.is-active {
+  background: var(--text);
+  color: #fff7ed;
+  border-color: var(--text);
+}
+
+.scenario-view {
+  grid-template-columns: 1.2fr 0.8fr;
+}
+
+.chat-window {
+  padding: 16px;
+  border-radius: 24px;
+  background: #fffaf2;
+  border: 1px solid rgba(53, 37, 29, 0.08);
+}
+
+.chat-window__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.chat-messages {
+  display: grid;
+  gap: 12px;
+}
+
+.message {
+  max-width: 78%;
+  padding: 14px 16px;
+  border-radius: 20px;
+  line-height: 1.7;
+}
+
+.message.user {
+  margin-left: auto;
+  background: rgba(214, 107, 45, 0.16);
+}
+
+.message.agent {
+  background: rgba(15, 118, 110, 0.11);
+}
+
+.scenario-side {
+  display: grid;
+  gap: 14px;
+}
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.capability-card span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: rgba(214, 107, 45, 0.16);
+  font-weight: 800;
+  color: var(--accent-deep);
+}
+
+.capability-card h3 {
+  margin: 18px 0 10px;
+  font-size: 24px;
+}
+
+@media (max-width: 1024px) {
+  .hero,
+  .flow-layout,
+  .scenario-view,
+  .capability-grid,
+  .arch-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .arch-layer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .hero {
+    padding-top: 8px;
+  }
+
+  .hero__actions,
+  .scenario-tabs {
+    flex-direction: column;
+  }
+
+  .signal-grid,
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .primary-btn,
+  .ghost-btn,
+  .scenario-tab {
+    width: 100%;
+  }
+
+  .message {
+    max-width: 92%;
+  }
+}
